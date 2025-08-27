@@ -15,11 +15,18 @@ namespace AutomatenLibrary.Service
         {
             _bankRepo = bankRepo;
         }
-        void InsertCash(double amount);       
-        bool HasEnough(double price);        
-        double CompletePurchase(double price);
-        double CancelTransaction();           
-        Bank GetBank();
+
+        public Bank GetBank()
+        {
+            return _bankRepo.GetBank();
+        }
+
+        public void SaveBank(Bank bank)
+        {
+            _bankRepo.SaveBank(bank);
+        }
+
+
 
 
     }
