@@ -13,7 +13,7 @@ namespace AutomatenLibrary.Service
     public class InventoryService
     {
 
-        private InventoryJsonRepo _inventoryRepo;
+        private IInventoryRepo _inventoryRepo;
 
         public InventoryService(IInventoryRepo inventoryRepo)
         {
