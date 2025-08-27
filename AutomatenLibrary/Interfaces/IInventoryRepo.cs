@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomatenLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Interfaces
 {
-    internal interface IInventoryRepo
+    public interface IInventoryRepo
     {
+        List<Inventory> GetAll(); //List for all inventory items
+
+        void Add(Inventory inventory); //Add a new inventory item
+
+        Inventory GetByID(int id); //Get a product by its ID
     }
 }

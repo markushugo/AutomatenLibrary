@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Models
 {
-    internal class Inventory
+    public class Inventory
     {
         private string _productId;
 
