@@ -9,7 +9,7 @@ namespace AutomatenLibrary.Models
     public class Bank
     {
         private double _totalInMachine;
-        private decimal _insertedAmount;
+        private double _insertedAmount;
         public double TotalInMachine { get; set; }
         public double InsertedAmount { get; set; }
 
