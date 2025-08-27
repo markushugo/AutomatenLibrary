@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Models
 {
-    internal class Products
+    internal class Product
     {
     }
 }

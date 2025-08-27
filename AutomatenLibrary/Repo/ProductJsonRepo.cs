@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Repo
 {
-    internal class ProductsJsonRepo
+    internal class ProductJsonRepo
     {
     }
 }

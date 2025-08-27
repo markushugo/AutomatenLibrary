@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="Interfaces\" />
+=======
+    <Folder Include="Services\" />
+>>>>>>> e37933adb8fdfdf14fde02a0ea3bc3fd7573f9a8
   </ItemGroup>
 
 </Project>
