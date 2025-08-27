@@ -9,15 +9,15 @@ namespace AutomatenLibrary.Models
     public class Product
     {
 
-        private int id;
+        private int _id;
 
-        private string name;
+        private string _name;
 
-        private double price;
+        private double _price;
 
-        private int puffs;
+        private int _puffs;
 
-        private string brand;
+        private string _brand;
 
 
         public int ID { get; set; }
