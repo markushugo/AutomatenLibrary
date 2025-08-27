@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace AutomatenLibrary.Repo
 {
-    internal class ProductJsonRepo
+    public class ProductJsonRepo
     {
         private List<Product> _product = new List<Product>(); //List for all products
         private string _path; //Path to the JSON file
@@ -42,15 +42,16 @@ namespace AutomatenLibrary.Repo
             return _product;
         }
 
-        //public Product GetByID(int id) //Get a product by its ID
-        //{
-        //    foreach(Product product in _product)
-        //    {
-        //        if (product. == id)
-        //        {
-        //            return product;
-        //        }
-        //    }
-        //}
+        public Product GetByID(int id) //Get a product by its ID
+        {
+            foreach (Product product in _product)
+            {
+                if (product.ID == id)
+                {
+                    return product;
+                }
+            }
+            return null;
+        }
     }
 }
