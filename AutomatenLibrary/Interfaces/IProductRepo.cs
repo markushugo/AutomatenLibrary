@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomatenLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace AutomatenLibrary.Interfaces
 {
     internal interface IProductRepo
     {
+        List<Product> GetAll(); //List for all products
+
+        void Add(Product product); //Add a new product
+
+        Product GetByID(int id); //Get a product by its ID
     }
 }
