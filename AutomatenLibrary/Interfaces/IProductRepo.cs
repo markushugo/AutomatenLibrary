@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Interfaces
 {
-    internal interface IProductRepo
+    public interface IProductRepo
     {
         List<Product> GetAll(); //List for all products
 
