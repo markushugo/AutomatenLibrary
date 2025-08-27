@@ -8,6 +8,18 @@ namespace AutomatenLibrary.Models
 {
     public class Product
     {
+
+        private string id;
+
+        private string name;
+
+        private double price;
+
+        private int puffs;
+
+        private string brand;
+
+
         public string ID { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
