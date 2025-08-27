@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Repo
 {
-    public class InventoryJsonRepo : IInventoryRepo
+    public class InventoryJsonRepo 
     {
 
         private List<Inventory> _inventory = new List<Inventory>(); //List for all products
