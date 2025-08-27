@@ -13,6 +13,8 @@ namespace AutomatenLibrary.Interfaces
 
         void Add(Inventory inventory); //Add a new inventory item
 
-        Inventory GetByID(int id); //Get a product by its ID
+        Inventory GetByID(string productID); //Get a product by its ID
+        
+        void UpdateStock(string productID, int quantity);
     }
 }

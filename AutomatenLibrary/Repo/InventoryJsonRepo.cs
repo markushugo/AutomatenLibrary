@@ -1,5 +1,6 @@
 ﻿using AutomatenLibrary.Interfaces;
 using AutomatenLibrary.Models;
+using AutomatenLibrary.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,16 +46,36 @@ namespace AutomatenLibrary.Repo
         {
             return _inventory;
         }
-        public Inventory GetByID(int id) //Get a product by its ID
+
+        public Inventory GetByID(string productID) //Get a product by its ID
         {
             foreach (Inventory inventory in _inventory)
             {
-                if (id == inventory.Quantity)
+                if (inventory.ProductID == inventory.Quantity)
                 {
                     return inventory;
                 }
             }
             return null;
+        }
+
+        public void UpdateStock(Inventory updatedInventory) 
+        {
+            if (updatedInventory == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _inventory.Count; i++)
+            {
+                Inventory current = _inventory[i];
+                if (current.ProductID == updatedInventory.ProductID)
+                {
+                    current.Quantity = updatedInventory.Quantity;
+                    SaveFile(_path); // Save changes to the JSON file
+                    return;
+                }
+            }
         }
     }
 }
