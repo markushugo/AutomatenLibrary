@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Interfaces
 {
-    internal class IProductRepo
+    internal interface IProductRepo
     {
     }
 }
