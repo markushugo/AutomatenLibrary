@@ -51,8 +51,8 @@ namespace AutomatenLibrary.Service
             }
 
             
-            public double CancelTransaction()
-            {
+            public double CancelTransaction() // Cancel the transaction and return inserted cash
+        {
                 double refund = _bank.InsertedAmount;
                 _bank.InsertedAmount = 0.0;
                 _bankRepo.SaveBank(_bank);
@@ -60,8 +60,8 @@ namespace AutomatenLibrary.Service
             }
 
             
-            public Bank GetBank()
-            {
+            public Bank GetBank() // Get the current state of the bank
+        {
                 return _bank;
             }
 

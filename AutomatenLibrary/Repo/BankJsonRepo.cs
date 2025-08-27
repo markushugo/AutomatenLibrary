@@ -16,16 +16,16 @@ namespace AutomatenLibrary.Repo
 
         public BankJsonRepo(string path) //Constructor with path to the JSON file
         {
-            // path kan være en mappe eller en fuld filsti
+            
             if (path.EndsWith(".json"))
                 _filePath = path;
             else
                 _filePath = Path.Combine(path, "bank.json");
         }       
 
-        public Bank GetBank() // Hent bankens tilstand fra JSON-filen
+        public Bank GetBank() // Get the current state of the bank
         {
-            if (!File.Exists(_filePath)) // Hvis filen ikke findes, returner en ny Bank
+            if (!File.Exists(_filePath)) 
                 return new Bank();
 
             string json = File.ReadAllText(_filePath);
@@ -33,7 +33,7 @@ namespace AutomatenLibrary.Repo
             if (bank == null) return new Bank();
             return bank;
         }
-        public void SaveBank(Bank bank) // Gem bankens tilstand til JSON-filen
+        public void SaveBank(Bank bank) // Save the current state of the bank
         {
             JsonSerializerOptions opts = new JsonSerializerOptions();
             opts.WriteIndented = true;
