@@ -9,7 +9,7 @@ namespace AutomatenLibrary.Models
     public class Product
     {
 
-        private string id;
+        private int id;
 
         private string name;
 
@@ -20,13 +20,13 @@ namespace AutomatenLibrary.Models
         private string brand;
 
 
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public int Puffs { get; set; }
         public string Brand { get; set; }
 
-        public Product(string id, string name, double price, int puffs, string brand)
+        public Product(int id, string name, double price, int puffs, string brand)
         {
             ID = id;
             Name = name;
@@ -34,5 +34,8 @@ namespace AutomatenLibrary.Models
             Puffs = puffs;
             Brand = brand;
         }
+
+
+        public Product() { }
     }
 }
