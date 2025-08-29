@@ -47,17 +47,18 @@ namespace AutomatenLibrary.Repo
             return _inventory;
         }
 
-        public Inventory GetByID(string productID) //Get a product by its ID
-        {
+        public Inventory GetByID(string productID)
+        { 
             foreach (Inventory inventory in _inventory)
             {
-                if (inventory.ProductID == inventory.Quantity)
+                if (inventory.ProductID == productID)
                 {
                     return inventory;
                 }
             }
             return null;
         }
+
 
         public void UpdateStock(Inventory updatedInventory) 
         {

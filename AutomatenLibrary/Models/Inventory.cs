@@ -23,5 +23,6 @@ namespace AutomatenLibrary.Models
         public Inventory() { }
 
 
+
     }
 }

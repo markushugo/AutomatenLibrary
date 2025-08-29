@@ -27,10 +27,12 @@ namespace AutomatenLibrary.Service
         {
             _inventoryRepo.Add(inventory);
         }
-        public Inventory GetInventoryById(int id)
+        public Inventory GetInventoryById(string id) 
         {
+           
             return _inventoryRepo.GetByID(id);
         }
+        
 
 
 
