@@ -20,13 +20,13 @@ namespace AutomatenLibrary.Repo
             LoadFile(_path); //Load data from the JSON file
         }
 
-        private void LoadFile(string path) //Load data from the JSON file
+        public void LoadFile(string path) //Load data from the JSON file
         {
                 string json = File.ReadAllText(path + "product.json"); //Read the file
                 _product = JsonSerializer.Deserialize<List<Product>>(json); //Deserialize the JSON data to a list of products
         }
 
-        private void SaveFile(string path) //Save data to the JSON file
+        public void SaveFile(string path) //Save data to the JSON file
         {
             File.WriteAllText(path + "product.json", JsonSerializer.Serialize(_product, new JsonSerializerOptions { WriteIndented = true }));
         }
