@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace AutomatenLibrary.Repo
 {
-    public class ProductJsonRepo
+    public class ProductJsonRepo : IProductRepo
     {
         private List<Product> _product = new List<Product>(); //List for all products
         private string _path; //Path to the JSON file
