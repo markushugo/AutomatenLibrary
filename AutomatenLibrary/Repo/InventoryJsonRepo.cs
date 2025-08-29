@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Repo
 {
-    public class InventoryJsonRepo 
+    public class InventoryJsonRepo : IInventoryRepo
     {
 
         private List<Inventory> _inventory = new List<Inventory>(); //List for all products
@@ -28,7 +28,7 @@ namespace AutomatenLibrary.Repo
         private void LoadFile(string path) //Load data from the JSON file
         {
             string json = File.ReadAllText(path + "inventory.json"); //Read the file
-            _inventory = JsonSerializer.Deserialize<List<Inventory>>(json); 
+            _inventory = JsonSerializer.Deserialize<List<Inventory>>(json);
         }
 
         private void SaveFile(string path) //Save data to the JSON file
@@ -48,7 +48,7 @@ namespace AutomatenLibrary.Repo
         }
 
         public Inventory GetByID(string productID)
-        { 
+        {
             foreach (Inventory inventory in _inventory)
             {
                 if (inventory.ProductID == productID)
@@ -60,19 +60,14 @@ namespace AutomatenLibrary.Repo
         }
 
 
-        public void UpdateStock(Inventory updatedInventory) 
+        public void UpdateStock(string productID, int quantity)
         {
-            if (updatedInventory == null)
-            {
-                return;
-            }
-
             for (int i = 0; i < _inventory.Count; i++)
             {
                 Inventory current = _inventory[i];
-                if (current.ProductID == updatedInventory.ProductID)
+                if (current.ProductID == productID)
                 {
-                    current.Quantity = updatedInventory.Quantity;
+                    current.Quantity = quantity;
                     SaveFile(_path); // Save changes to the JSON file
                     return;
                 }
