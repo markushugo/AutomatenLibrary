@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace AutomatenLibrary.Models
 {
-    internal class VendingMachine
+    public class VendingMachine
     {
+
+        public VendingMachine() { }
+
     }
 }

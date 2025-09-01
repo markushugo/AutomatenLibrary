@@ -8,13 +8,17 @@ using System.Threading.Tasks;
 namespace AutomatenLibrary.Interfaces
 {
     public interface IInventoryRepo
-    {
-        List<Inventory> GetAll(); //List for all inventory items
+    {      
+            
+            List<Inventory> GetAllInventory();
+            void SaveAllInventory(List<Inventory> items);
 
-        void Add(Inventory inventory); //Add a new inventory item
+            void Add(Inventory inventory);
+            Inventory GetByID(int productID);
+            void UpdateStock(int productID, int quantity);
 
-        Inventory GetByID(string productID); //Get a product by its ID
-        
-        void UpdateStock(string productID, int quantity);
+            
+            List<Inventory> GetAll();
+        }
     }
-}
+

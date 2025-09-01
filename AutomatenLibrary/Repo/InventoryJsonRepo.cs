@@ -15,63 +15,121 @@ namespace AutomatenLibrary.Repo
 {
     public class InventoryJsonRepo : IInventoryRepo
     {
+     
+            private List<Inventory> _inventory = new List<Inventory>();
+            private readonly string _path;
 
-        private List<Inventory> _inventory = new List<Inventory>(); //List for all products
-        private string _path; //Path to the JSON file
-
-        public InventoryJsonRepo(string path) //Constructor with path to the JSON file
-        {
-            _path = path;
-            LoadFile(_path); //Load data from the JSON file
-        }
-
-        private void LoadFile(string path) //Load data from the JSON file
-        {
-            string json = File.ReadAllText(path + "inventory.json"); //Read the file
-            _inventory = JsonSerializer.Deserialize<List<Inventory>>(json);
-        }
-
-        private void SaveFile(string path) //Save data to the JSON file
-        {
-            File.WriteAllText(path + "inventory.json", JsonSerializer.Serialize(_inventory, new JsonSerializerOptions { WriteIndented = true }));
-        }
-
-        public void Add(Inventory inventory) //Add a new product
-        {
-            _inventory.Add(inventory);
-            SaveFile(_path); //Save the data to the JSON file
-        }
-
-        public List<Inventory> GetAll() //List for all products
-        {
-            return _inventory;
-        }
-
-        public Inventory GetByID(string productID)
-        {
-            foreach (Inventory inventory in _inventory)
+            public InventoryJsonRepo(string path)
             {
-                if (inventory.ProductID == productID)
-                {
-                    return inventory;
-                }
+                _path = path;
+                EnsureLoaded();
             }
-            return null;
-        }
 
-
-        public void UpdateStock(string productID, int quantity)
-        {
-            for (int i = 0; i < _inventory.Count; i++)
+            private string FilePath()
             {
-                Inventory current = _inventory[i];
-                if (current.ProductID == productID)
+                return Path.Combine(_path, "inventory.json");
+            }
+
+            private void EnsureLoaded()
+            {
+                string fp = FilePath();
+                if (!Directory.Exists(_path))
                 {
-                    current.Quantity = quantity;
-                    SaveFile(_path); // Save changes to the JSON file
+                    Directory.CreateDirectory(_path);
+                }
+
+                if (!File.Exists(fp))
+                {
+                    _inventory = new List<Inventory>();
+                    SaveFile();
                     return;
                 }
+
+                string json = File.ReadAllText(fp);
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    _inventory = new List<Inventory>();
+                    SaveFile();
+                    return;
+                }
+
+                try
+                {
+                    List<Inventory> loaded = JsonSerializer.Deserialize<List<Inventory>>(json);
+                    if (loaded != null) _inventory = loaded; else _inventory = new List<Inventory>();
+                }
+                catch (JsonException)
+                {
+                    
+                    _inventory = new List<Inventory>();
+                    SaveFile();
+                }
+            }
+
+            private void SaveFile()
+            {
+                string fp = FilePath();
+                JsonSerializerOptions opts = new JsonSerializerOptions();
+                opts.WriteIndented = true;
+                string json = JsonSerializer.Serialize(_inventory, opts);
+                File.WriteAllText(fp, json);
+            }
+
+           
+
+            public void Add(Inventory inventory)
+            {
+                _inventory.Add(inventory);
+                SaveFile();
+            }
+
+            public List<Inventory> GetAllInventory()
+            {
+                
+                return new List<Inventory>(_inventory);
+            }
+
+            public void SaveAllInventory(List<Inventory> items)
+            {
+                if (items == null) items = new List<Inventory>();
+                _inventory = items;
+                SaveFile();
+            }
+
+            public Inventory GetByID(int productID)
+            {
+                int i;
+                for (i = 0; i < _inventory.Count; i++)
+                {
+                    if (_inventory[i].ProductID == productID)
+                        return _inventory[i];
+                }
+                return null;
+            }
+
+            public void UpdateStock(int productID, int quantity)
+            {
+                int i;
+                for (i = 0; i < _inventory.Count; i++)
+                {
+                    if (_inventory[i].ProductID == productID)
+                    {
+                        _inventory[i].Quantity = quantity;
+                        SaveFile();
+                        return;
+                    }
+                }
+
+
+                Inventory inv = new Inventory(productID, quantity);
+                _inventory.Add(inv);
+                SaveFile();
+            }
+
+
+            public List<Inventory> GetAll()
+            {
+                return GetAllInventory();
             }
         }
     }
-}
