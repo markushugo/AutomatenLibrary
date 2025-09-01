@@ -22,11 +22,17 @@ namespace AutomatenLibrary.Repo
 
         public void LoadFile(string path) //Load data from the JSON file
         {
-                string json = File.ReadAllText(path + "product.json"); //Read the file
-                _product = JsonSerializer.Deserialize<List<Product>>(json); //Deserialize the JSON data to a list of products
+            string file = Path.Combine(path, "product.json");
+            if (File.Exists(file))
+            {
+                string json = File.ReadAllText(file);
+                var products = JsonSerializer.Deserialize<List<Product>>(json);
+                if (products != null)
+                    _product = products;
+            }
         }
 
-        public void SaveFile(string path) //Save data to the JSON file
+        private void SaveFile(string path) // Method to save the data to the json file
         {
             File.WriteAllText(path + "product.json", JsonSerializer.Serialize(_product, new JsonSerializerOptions { WriteIndented = true }));
         }
