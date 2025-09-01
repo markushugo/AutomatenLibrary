@@ -14,5 +14,7 @@ namespace AutomatenLibrary.Interfaces
         void Add(Product product); //Add a new product
 
         Product GetByID(int id); //Get a product by its ID
+
+        Product UdpatePrice(int id, double newPrice); //Update the price of a product
     }
 }

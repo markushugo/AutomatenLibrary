@@ -59,5 +59,17 @@ namespace AutomatenLibrary.Repo
             }
             return null;
         }
+
+        public Product UdpatePrice(int id, double newPrice) //Update the price of a product
+        {
+            Product product = GetByID(id);
+            if (product != null)
+            {
+                product.Price = newPrice;
+                SaveFile(_path); //Save the data to the JSON file
+                return product;
+            }
+            return null;
+        }
     }
 }

@@ -31,5 +31,9 @@ namespace AutomatenLibrary
             return _productRepo.GetByID(id);
         }
 
+        public Product UpdatePrice(int id, double newPrice) // Update the price of a product
+        {
+            return _productRepo.UdpatePrice(id, newPrice);
+        }
     }
 }

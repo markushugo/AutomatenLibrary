@@ -334,7 +334,19 @@ namespace AutomatenLibrary.Service
             int newTotal = currentQty + addQty;
             _inventoryService.UpdateStock(productId, newTotal);
             Console.WriteLine("Lager opdateret: " + currentQty + " + " + addQty + " = " + newTotal);
+        }
 
+        public void UpdatePrices() 
+        {
+            PrintInventoryWithProductInfo();
+            Console.WriteLine("Hvilke produkt vil du ændre pris på?");
+            int productId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Hvad skal den nye pris være?");
+            double newPrice = Convert.ToDouble(Console.ReadLine());
+            Product p = _productService.GetProductById(productId);
+            p.Price = newPrice;
+            Console.WriteLine("Prisen er nu opdateret til: " + newPrice.ToString("0.00") + " kr");
+            newPrice = _productService.UpdatePrice(productId, newPrice).Price;
 
         }
     }
