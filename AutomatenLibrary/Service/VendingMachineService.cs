@@ -144,6 +144,8 @@ namespace AutomatenLibrary.Service
         }
         public void CashInMachine() // Method to load cash into the vending machine
         {
+            Console.WriteLine("Der er nu så meget i maskinen");
+            Console.WriteLine(_bankService.GetBank().TotalInMachine + " kr");
             Console.WriteLine("Hvor mange penge vil du indsætte");
             double amount = Convert.ToDouble(Console.ReadLine());
 
@@ -336,7 +338,7 @@ namespace AutomatenLibrary.Service
             Console.WriteLine("Lager opdateret: " + currentQty + " + " + addQty + " = " + newTotal);
         }
 
-        public void UpdatePrices() 
+        public void UpdatePrices()
         {
             PrintInventoryWithProductInfo();
             Console.WriteLine("Hvilke produkt vil du ændre pris på?");
@@ -347,6 +349,7 @@ namespace AutomatenLibrary.Service
             p.Price = newPrice;
             Console.WriteLine("Prisen er nu opdateret til: " + newPrice.ToString("0.00") + " kr");
             newPrice = _productService.UpdatePrice(productId, newPrice).Price;
+        }
 
         public void UpdatePrice(Product product)
         {
