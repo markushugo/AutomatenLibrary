@@ -326,9 +326,14 @@ namespace AutomatenLibrary.Service
             Console.WriteLine("Hvilke produkt vil du restock?");
             int productId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Hvor mange vil du ligge på lager?");
-            int newQty = Convert.ToInt32(Console.ReadLine());         
-            SetInventoryQuantity(productId, newQty);
-            Console.WriteLine("Lager opdateret.");
+            int addQty = Convert.ToInt32(Console.ReadLine());  
+
+            Inventory inv = _inventoryService.GetInventoryById(productId);
+            int currentQty = 0;
+            currentQty = inv.Quantity;          
+            int newTotal = currentQty + addQty;
+            _inventoryService.UpdateStock(productId, newTotal);
+            Console.WriteLine("Lager opdateret: " + currentQty + " + " + addQty + " = " + newTotal);
 
 
         }
