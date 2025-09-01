@@ -303,5 +303,13 @@ namespace AutomatenLibrary.Service
             Console.WriteLine("I alt fjernet: " + sum.ToString("0.00") + " kr");
         }
 
+        public void UpdateStock(int productID, int quantity)
+        {
+           Console.WriteLine("Indtast produkt ID, som du vil opdatere mængden på lager af");
+           int id = Convert.ToInt32(Console.ReadLine());
+           Console.WriteLine($"Der er lige nu " + quantity + " af produktet på lager");
+           
+           Console.WriteLine("Indtast den nye mængde på lager");
+        }
     }
 }
