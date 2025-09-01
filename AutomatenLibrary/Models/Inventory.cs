@@ -8,21 +8,18 @@ namespace AutomatenLibrary.Models
 {
     public class Inventory
     {
-        private int _productID;
-        private int _quantity;
-
         public int ProductID { get; set; }
         public int Quantity { get; set; }
 
-        public Inventory(int productID, int quantity) 
+        public Inventory(int productID, int quantity)
         {
             ProductID = productID;
             Quantity = quantity;
         }
 
         public Inventory() { }
-
-
-
     }
+
+
 }
+

@@ -50,8 +50,27 @@ namespace AutomatenLibrary.Service
                 return change;
             }
 
-            
-            public double CancelTransaction() // Cancel the transaction and return inserted cash
+        public double RemoveCash(double amount) 
+        { 
+                if (amount > _bank.TotalInMachine)
+                {
+                    amount = _bank.TotalInMachine; // Can only remove as much as is in the machine
+                }
+                _bank.TotalInMachine = _bank.TotalInMachine - amount;
+                _bankRepo.SaveBank(_bank);
+                return amount;
+        } // Remove cash from the machine
+
+        public bool HasChangeFor(double price)
+        {
+            Bank b = _bankRepo.GetBank();
+            double change = b.InsertedAmount - price;
+            if (change < 0) return false;           
+            if (change == 0) return true;            
+            return change <= b.TotalInMachine;       
+        }
+
+        public double CancelTransaction() // Cancel the transaction and return inserted cash
         {
                 double refund = _bank.InsertedAmount;
                 _bank.InsertedAmount = 0.0;
@@ -65,10 +84,32 @@ namespace AutomatenLibrary.Service
                 return _bank;
             }
 
-
-
-
+        public double EmptyCashBox()
+        {
+            double removed = _bankRepo.EmptyCashBox();
+            _bank = _bankRepo.GetBank(); 
+            return removed;
         }
+
+        public double GetWithdrawnTotal()
+        {
+            List<Withdrawal> list = _bankRepo.GetWithdrawalHistory();
+            double sum = 0.0;
+            int i;
+            for (i = 0; i < list.Count; i++)
+            {
+                sum = sum + list[i].Amount;
+            }
+            return sum;
+        }
+
+        public List<Withdrawal> GetWithdrawals()
+        {
+            return _bankRepo.GetWithdrawalHistory();
+        }
+
+
+    }
     }
 
 

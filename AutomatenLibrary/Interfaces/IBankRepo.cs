@@ -18,6 +18,11 @@ namespace AutomatenLibrary.Interfaces
         Bank GetBank(); // Get the current state of the bank
 
         void SaveBank(Bank bank); // Save the current state of the bank
+
+        void RemoveCash(double amount); // Remove cash from the machine
+        double EmptyCashBox();
+        List<Withdrawal> GetWithdrawalHistory();
+        void AppendWithdrawal(Withdrawal w);
     }
 }
 

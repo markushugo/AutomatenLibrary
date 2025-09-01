@@ -3,20 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AutomatenLibrary.Models.Withdrawal;
 
 namespace AutomatenLibrary.Models
 {
     public class Bank
     {
-        public double TotalInMachine { get; set; }   // Penge i maskinen i alt
-        public double InsertedAmount { get; set; }   // Penge indsat af aktuel kunde
+        public double TotalInMachine { get; set; }   
+        public double InsertedAmount { get; set; }  
 
-        public Bank() { }
-
-        public Bank(double totalInMachine, double insertedAmount)
-        {
+     
+        public Bank(double totalInMachine, double insertedAmount) 
+        { 
             TotalInMachine = totalInMachine;
             InsertedAmount = insertedAmount;
+
+
+
+        }    
+
+        public Bank() 
+        { 
+            
         }
+
     }
+
+
+
+   
 }
+

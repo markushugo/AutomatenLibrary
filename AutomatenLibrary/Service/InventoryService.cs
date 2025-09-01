@@ -15,12 +15,12 @@ namespace AutomatenLibrary.Service
       
             private IInventoryRepo _inventoryRepo;
 
-            public InventoryService(IInventoryRepo inventoryRepo)
-            {
-                _inventoryRepo = inventoryRepo;
-            }
+        public InventoryService(IInventoryRepo inventoryRepo)
+        {
+            _inventoryRepo = inventoryRepo;
+        }
 
-            public List<Inventory> GetAllInventory()
+        public List<Inventory> GetAllInventory()
             {
                 return _inventoryRepo.GetAllInventory();
             }
@@ -44,9 +44,10 @@ namespace AutomatenLibrary.Service
             {
                 _inventoryRepo.UpdateStock(productID, quantity);
             }
+           
 
-            // (valgfrit)
-            public List<Inventory> GetAll()
+        // (valgfrit)
+        public List<Inventory> GetAll()
             {
                 return _inventoryRepo.GetAll();
             }
