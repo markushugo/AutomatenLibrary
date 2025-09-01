@@ -335,7 +335,24 @@ namespace AutomatenLibrary.Service
             _inventoryService.UpdateStock(productId, newTotal);
             Console.WriteLine("Lager opdateret: " + currentQty + " + " + addQty + " = " + newTotal);
 
+        }
 
+        public void UpdatePrice(Product product)
+        {
+            PrintAllProducts();
+            Console.WriteLine("Hvilket produkt vil du ændre prisen på? (indtast ID)");
+            int productId = Convert.ToInt32(Console.ReadLine());
+            Product p = _productService.GetProductById(productId);
+            if (p == null)
+            {
+                Console.WriteLine("Produkt ikke fundet i product.json");
+                return;
+            }
+            Console.WriteLine("Nuværende pris: " + p.Price.ToString("0.00") + " kr");
+            Console.WriteLine("Indtast ny pris:");
+            double newPrice = Convert.ToDouble(Console.ReadLine());
+            p.Price = newPrice;
+            Console.WriteLine("Prisen er nu opdateret til: " + p.Price.ToString("0.00") + " kr");
         }
     }
 }
