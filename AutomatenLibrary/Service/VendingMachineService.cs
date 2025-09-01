@@ -270,13 +270,30 @@ namespace AutomatenLibrary.Service
                 return;
             }
 
-           
+           Console.WriteLine("Vil du fortryde køb ja/nej");
+            string cancelPurchase = Console.ReadLine().ToLower();
 
-            double change = _bankService.CompletePurchase(p.Price);
-            Console.WriteLine("Køb gennemført. Dit bytte er: " + change.ToString("0.00") + " kr");
-
+            if (cancelPurchase == "ja")
+            {
+                double refund3 = _bankService.CancelTransaction();
+                Console.WriteLine("Din transaktion er annulleret. Dine penge er returneret: " + refund3.ToString("0.00") + " kr");
+                return;
+            }
+            else if (cancelPurchase == "nej")
+            {
+                double change = _bankService.CompletePurchase(p.Price);
+                Console.WriteLine("Køb gennemført. Dit bytte er: " + change.ToString("0.00") + " kr");
+            }
+            else 
+            {
             
-            int newQty = inv.Quantity - 1; // Decrease inventory quantity by 1
+            Console.WriteLine("Ugyldigt svar. Transaktionen annulleret.");
+
+
+            }
+
+
+             int newQty = inv.Quantity - 1; // Decrease inventory quantity by 1
             _inventoryService.UpdateStock(productId, newQty); // <- int overload
         }
         public void AdminEmptyCashBox() // Method for admin to empty the cash box
